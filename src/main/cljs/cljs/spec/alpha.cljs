@@ -1456,10 +1456,6 @@
   (cond
     (integer? val) (c/and (<= start val) (< val end))
 
-    (instance? goog.math.Long val)
-    (c/and (.lessThanOrEqual start val)
-           (.lessThan val end))
-
     (instance? goog.math.Integer val)
     (c/and (.lessThanOrEqual start val)
            (.lessThan val end))

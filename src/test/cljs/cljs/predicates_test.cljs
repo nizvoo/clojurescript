@@ -41,9 +41,6 @@
   (let [posint 10e10
         negint -10e10
         neg0   (/ ##-Inf)
-        natl   (Long.getZero)
-        posl   (Long.fromNumber posint)
-        negl   (Long.fromNumber negint)
         nati   Integer.ZERO
         posi   (Integer.fromNumber posint)
         negi   (Integer.fromNumber negint)]
@@ -56,9 +53,6 @@
      [-1.0      true  false  true     true   true      false     false   ]
      [posint    false true   true     true   false     true      true    ]
      [negint    true  false  true     true   true      false     false   ]
-     [natl      false false  false    true   false     false     true    ]
-     [posl      false true   false    true   false     true      true    ]
-     [negl      true  false  false    true   true      false     false   ]
      [nati      false false  false    true   false     false     true    ]
      [posi      false true   false    true   false     true      true    ]
      [negi      true  false  false    true   true      false     false   ]]))

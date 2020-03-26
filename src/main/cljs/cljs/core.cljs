@@ -7,8 +7,7 @@
 ;   You must not remove this notice, or any other, from this software.
 
 (ns cljs.core
-  (:require goog.math.Long
-            goog.math.Integer
+  (:require goog.math.Integer
             [goog.string :as gstring]
             [goog.object :as gobject]
             [goog.array :as garray]
@@ -1715,7 +1714,7 @@ reduces them without incurring seq initialization"
     (if (pos? i)
       (RSeq. ci (dec i) nil)
       ()))
-  
+
   INext
   (-next [coll]
     (when (pos? i)
@@ -1822,7 +1821,7 @@ reduces them without incurring seq initialization"
 
       (array? coll)
       (alength coll)
-    
+
       (string? coll)
       ^number (.-length coll)
 
@@ -2267,12 +2266,10 @@ reduces them without incurring seq initialization"
        (== (js/parseFloat n) (js/parseInt n 10))))
 
 (defn int?
-  "Return true if x satisfies integer? or is an instance of goog.math.Integer
-   or goog.math.Long."
+  "Return true if x satisfies integer? or is an instance of goog.math.Integer"
   [x]
   (or (integer? x)
-      (instance? goog.math.Integer x)
-      (instance? goog.math.Long x)))
+      (instance? goog.math.Integer x)))
 
 (defn pos-int?
   "Return true if x satisfies int? and is positive."
@@ -2281,10 +2278,6 @@ reduces them without incurring seq initialization"
     (integer? x) (pos? x)
 
     (instance? goog.math.Integer x)
-    (and (not (.isNegative x))
-         (not (.isZero x)))
-
-    (instance? goog.math.Long x)
     (and (not (.isNegative x))
          (not (.isZero x)))
 
@@ -2299,9 +2292,6 @@ reduces them without incurring seq initialization"
     (instance? goog.math.Integer x)
     (.isNegative x)
 
-    (instance? goog.math.Long x)
-    (.isNegative x)
-
     :else false))
 
 (defn nat-int?
@@ -2312,9 +2302,6 @@ reduces them without incurring seq initialization"
     (not (neg? x))
 
     (instance? goog.math.Integer x)
-    (not (.isNegative x))
-
-    (instance? goog.math.Long x)
     (not (.isNegative x))
 
     :else false))
@@ -2539,7 +2526,7 @@ reduces them without incurring seq initialization"
 
        (array? coll)
        (array-reduce coll f val)
-      
+
        (string? coll)
        (array-reduce coll f val)
 
@@ -3271,7 +3258,7 @@ reduces them without incurring seq initialization"
 
   ISeqable
   (-seq [coll] coll)
-  
+
   IReduce
   (-reduce [coll f] (seq-reduce f coll))
   (-reduce [coll f start] (seq-reduce f start coll)))
@@ -3306,7 +3293,7 @@ reduces them without incurring seq initialization"
   (toString [_] (str ":" fqn))
   (equiv [this other]
     (-equiv this other))
-  
+
   IEquiv
   (-equiv [_ other]
     (if (instance? Keyword other)
@@ -4920,7 +4907,7 @@ reduces them without incurring seq initialization"
 
   IPending
   (-realized? [coll] false)
-  
+
   IWithMeta
   (-with-meta [coll new-meta]
     (if (identical? new-meta meta)
@@ -4968,7 +4955,7 @@ reduces them without incurring seq initialization"
   ISequential
   ISeqable
   (-seq [coll] coll)
-  
+
   IEquiv
   (-equiv [coll other] (equiv-sequential coll other))
 
@@ -6961,13 +6948,13 @@ reduces them without incurring seq initialization"
               @init
               (recur (+ i 2) init)))
           init))))
-  
+
   IReduce
   (-reduce [coll f]
     (iter-reduce coll f))
   (-reduce [coll f start]
     (iter-reduce coll f start))
-  
+
   IFn
   (-invoke [coll k]
     (-lookup coll k))
@@ -7108,7 +7095,7 @@ reduces them without incurring seq initialization"
           (set! len (- len 2)))
         tcoll)
       (throw (js/Error. "dissoc! after persistent!"))))
-  
+
   IFn
   (-invoke [tcoll key]
     (-lookup tcoll key nil))
@@ -8974,7 +8961,7 @@ reduces them without incurring seq initialization"
 
   IHash
   (-hash [coll] (hash-ordered-coll coll))
-  
+
   ISeq
   (-first [coll]
     (let [^not-native me (-first mseq)]
@@ -9523,7 +9510,7 @@ reduces them without incurring seq initialization"
 
 (defn max-key
   "Returns the x for which (k x), a number, is greatest.
-  
+
   If there are multiple such xs, the last one is returned."
   ([k x] x)
   ([k x y] (if (> (k x) (k y)) x y))
@@ -10461,7 +10448,7 @@ reduces them without incurring seq initialization"
     (if (vector? y)
       (compare-indexed x y)
       (throw (js/Error. (str "Cannot compare " x " to " y)))))
-  
+
   PersistentVector
   (-compare [x y]
     (if (vector? y)
